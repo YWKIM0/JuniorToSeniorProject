@@ -25,6 +25,32 @@
 	<resources location="/resources/" mapping="/resources/**"></resources>
 	<resources location="file:///C:/upload/" mapping="/**"></resources>	
 	
+	<beans:bean id="loginInterceptor" class="com.kids.interceptor.LoginInterceptor"/>
+	
+	<!-- 인터셉터 추가 부분 -->
+	<interceptors>
+		
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/logInForm"/>						
+			<exclude-mapping path="/login"/>						
+			<exclude-mapping path="/signUpType"/>						
+			<exclude-mapping path="/userInfoFormPar"/>						
+			<exclude-mapping path="/userInfoFormSnr"/>						
+			<exclude-mapping path="/boardList"/>						
+			<exclude-mapping path="/viewArticle"/>						
+			<exclude-mapping path="/resources/**"/>
+			<!--
+			/resources/** 코드 작성으로 인한 불필요 코드 
+			<exclude-mapping path="/**/*.css"/>
+			<exclude-mapping path="/**/*.js"/>
+			 -->
+			<exclude-mapping path="/main"/>
+			
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

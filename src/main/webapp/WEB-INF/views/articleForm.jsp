@@ -52,8 +52,10 @@
 </style>
 </head>
 <body>
-
+<%-- 
 <script>
+
+	인터셉터 테스트
 	function doLogin(){
 		Swal.fire({
   			 title: '로그인이 필요합니다.',
@@ -76,7 +78,8 @@
 	</script>
 <%		
 	}
-%>
+%> --%>
+
 		<h1 style="text-align: center"><span class="emphasis">관리자</span>에게 <span class="emphasis">문의</span>하기</h1>
 		<div id="container">
 			<form action="" method="post" id="writeForm">

@@ -79,4 +79,13 @@ public class BoardDaoImpl implements BoardDao{
 		return list;
 	}
 
+	@Override
+	public int selectCountByArticleNo(int articleNo) {
+		// TODO Auto-generated method stub
+		
+		int result  = sqlSessionTemplate.selectOne("board_mapper.select_count_by_articleNo", articleNo);
+		
+		return result;
+	}
+
 }

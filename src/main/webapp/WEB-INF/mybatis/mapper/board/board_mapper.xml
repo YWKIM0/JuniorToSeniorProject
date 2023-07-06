@@ -16,6 +16,12 @@
 		from  board start with parent_no = 0 connect by prior article_no = parent_no order siblings by article_no desc 
 	</select>
 	
+	<select id="select_count_by_articleNo" parameterType="int" resultType="int">
+		select count(article_no)
+		from  board
+		where article_no = #{articleNo}
+	</select>
+	
 	<select id="select_article_by_articleNo" resultType="BoardDto">
 		select article_no, parent_no, title, content, id , created_at, views
 		from  board

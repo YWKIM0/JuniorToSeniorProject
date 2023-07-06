@@ -119,7 +119,7 @@ tr:last-child td:last-child {
 <%@ include file="header.jsp"%>
 
 <%
-if ( !(userId.equals("admin")) || userId == null) {
+if ( !(userId.equals("admin")) ) {
 response.sendRedirect("main");
 }
 %> 

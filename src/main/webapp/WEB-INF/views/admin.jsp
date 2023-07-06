@@ -66,10 +66,15 @@ body {
 
 <%@ include file="header.jsp"%>
 
-<%
+<%-- <%
 if ( !(userId.equals("admin")) || userId == null) {
 response.sendRedirect("main");
 }
+%> --%> 
+<%
+	if ( !(userId.equals("admin")) ) {
+	response.sendRedirect("main");
+	}
 %> 
 
 <body>

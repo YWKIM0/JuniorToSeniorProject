@@ -75,4 +75,13 @@ public class BoardServiceImpl implements BoardService{
 		return list;
 	}
 
+	@Override
+	public int getCountByArticleNo(int articleNo) {
+		// TODO Auto-generated method stub
+		
+		int result = boardDao.selectCountByArticleNo(articleNo);
+		
+		return result;
+	}
+
 }

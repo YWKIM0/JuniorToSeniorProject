@@ -50,8 +50,12 @@ public class BoardController {
 	
 	//게시글 상세 보기
 	@GetMapping("/viewArticle")
-	public String viewArticle(Model model, @RequestParam int articleNo,
+	public String viewArticle(Model model, @RequestParam (required = false)String articleNo,
 							  HttpServletRequest request, HttpServletResponse response) {
+		
+		if (articleNo == null || articleNo == "") {
+			return "redirect:/boardList";
+		}
 		
 		Cookie oldCookie = null;
 	    Cookie[] cookies = request.getCookies();
@@ -64,21 +68,31 @@ public class BoardController {
 	    }
 	    if (oldCookie != null) {
 	        if (!oldCookie.getValue().contains("[" + articleNo + "]")) {
-	        	boardService.updateViews(articleNo);
+//	        	boardService.updateViews(articleNo);
+	        	boardService.updateViews(Integer.parseInt(articleNo));
 	            oldCookie.setValue(oldCookie.getValue() + "_[" + articleNo + "]");
 	            oldCookie.setPath("/");
 	            oldCookie.setMaxAge(60 * 60 * 24);
 	            response.addCookie(oldCookie);
 	        }
 	    } else {
-	    	boardService.updateViews(articleNo);
+//	    	boardService.updateViews(articleNo);
+	    	boardService.updateViews(Integer.parseInt(articleNo));
 	        Cookie newCookie = new Cookie("postView","[" + articleNo + "]");
 	        newCookie.setPath("/");
 	        newCookie.setMaxAge(60 * 60 * 24);
 	        response.addCookie(newCookie);
 	    }
 		
-		BoardDto article = boardService.getArticleByArticleNo(articleNo);
+//		BoardDto article = boardService.getArticleByArticleNo(articleNo);
+	    int count = boardService.getCountByArticleNo(Integer.parseInt(articleNo));
+	    if (count == 0) {
+			return "redirect:/boardList";
+		}
+	    
+		BoardDto article = boardService.getArticleByArticleNo(Integer.parseInt(articleNo));
+		System.out.println("게시글 번호 " +  article.getArticleNo());
+		
 		model.addAttribute("article", article);
 
 		return "viewArticle";

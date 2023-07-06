@@ -10,6 +10,8 @@ public interface BoardService {
 
 	public int addNewArticle(BoardDto boardDto);
 	
+	public int getCountByArticleNo(int articleNo);
+	
 	public List<BoardDto> getAllArticleList();
 
 	public BoardDto getArticleByArticleNo(int articleNo);

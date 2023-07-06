@@ -13,6 +13,8 @@ public interface BoardDao {
 
 	public BoardDto selectArticleByArticleNo(int articleNo);
 	
+	public int selectCountByArticleNo(int articleNo);
+	
 	public int modifyArticle(BoardDto boardDto);
 	
 	public int deleteArticle(int articleNo);
