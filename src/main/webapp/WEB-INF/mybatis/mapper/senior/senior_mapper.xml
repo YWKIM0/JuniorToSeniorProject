@@ -97,5 +97,11 @@
 			work_status = #{workStatus}
 		where id = #{id} and schedule_code = #{scheduleCode}
 	</update>
+	
+	<select id="select_verification_status" parameterType="String" resultType="String">
+		select verification_status
+		from verification
+		where id = #{id}
+	</select>
 
 </mapper>

@@ -29,5 +29,7 @@ public interface SeniorService {
 	public int updateSchedule(Map<String, String> map);
 	public ImageFileDTO getImgById(String id);
 	public int updateScheduleWorkStatus(Map<String, String> map);
+
+	public String getVerificationStatus(String id); //시니어 인증상태를 가져오는 메소드
 	
 }

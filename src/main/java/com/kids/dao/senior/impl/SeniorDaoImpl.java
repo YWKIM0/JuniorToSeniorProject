@@ -124,4 +124,12 @@ public class SeniorDaoImpl implements SeniorDao {
 		return result;
 	}
 
+	@Override
+	public String selectVerificationStatus(String id) {
+		// TODO Auto-generated method stub
+		
+		String result = sqlSessionTemplate.selectOne("senior_mapper.select_verification_status", id);
+		return result;
+	}
+
 }

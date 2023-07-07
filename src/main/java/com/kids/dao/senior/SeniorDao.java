@@ -29,4 +29,6 @@ public interface SeniorDao {
 	public int updateSchedule(Map<String, String> map);
 	public ImageFileDTO selectImgById(String id);
 	public int updateScheduleWorkStatus(Map<String, String> map);
+
+	public String selectVerificationStatus(String id); //시니어의 인증상태를 가져온다.
 }

@@ -61,6 +61,8 @@ public class MypageController {
 		model.addAttribute("parentsDetail", parentsDetail);
 		model.addAttribute("parentsImg", parentsImg);
 		
+		
+		
 		return "parMypage";
 	}
 	@GetMapping("/snrMypage")
@@ -73,6 +75,11 @@ public class MypageController {
 		SeniorDetailDto seniorDetail = seniorService.getSeniorDetailById(id);
 		model.addAttribute("seniorDetail", seniorDetail);
 		model.addAttribute("seniorImg", seniorImg);
+		
+		//시니어 마이페이지
+		//인증 or 미인증 상태를 출력하기 위한 추가 부분
+		String verificationStatus = seniorService.getVerificationStatus(id);
+		model.addAttribute("verificationStatus", verificationStatus);
 		
 		List<SeniorScheduleDto> seniorEnableSchedule = seniorService.getSeniorEnableSchedule(id);
 		model.addAttribute("seniorEnableSchedule", seniorEnableSchedule);

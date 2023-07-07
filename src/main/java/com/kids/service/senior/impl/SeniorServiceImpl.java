@@ -120,4 +120,12 @@ public class SeniorServiceImpl implements SeniorService{
 		return result;
 	}
 
+	@Override
+	public String getVerificationStatus(String id) {
+		// TODO Auto-generated method stub
+		
+		String result = seniorDao.selectVerificationStatus(id);
+		return result;
+	}
+
 }

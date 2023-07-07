@@ -52,10 +52,9 @@
 </style>
 </head>
 <body>
-<%-- 
+<%--
+	인터셉터 기능 추가로 인한 주석처리 
 <script>
-
-	인터셉터 테스트
 	function doLogin(){
 		Swal.fire({
   			 title: '로그인이 필요합니다.',

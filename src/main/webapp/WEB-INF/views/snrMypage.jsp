@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
+<style type="text/css">
+	.nameTag {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>
 <link rel="stylesheet" href="/resources/css/mypage_css.css">
 </head>
 <body>
@@ -15,8 +22,17 @@
 	<h1>Mypage</h1>
 	
 	<form action="" method="post" enctype="multipart/form-data">	
-		<h1>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</h1>
-
+		<div class="nameTag">
+			<h1>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세</h1>
+			<c:choose>
+				<c:when test="${verificationStatus == 'Y'}">
+					<img alt="인증" src="/resources/image/인증.png" style="width: 100px; height: 100px">	
+				</c:when>
+				<c:when test="${verificationStatus == 'N'}">
+					<img alt="미인증" src="/resources/image/미인증.png" style="width: 100px; height: 100px">	
+				</c:when>
+			</c:choose>
+		</div>
 		<label for="image">     
             <img class="profileimage" id="preview" src="${pageContext.request.contextPath}/image/profile/${seniorImg.fileName}" onerror="this.onerror=null;this.src='/resources/image/no_profile.png'">
         </label>
@@ -26,8 +42,9 @@
 		
 		<div class="smallContainer">
 		<p id="pw_p">비밀번호 <button type="button" onclick="location.href='/changePassword'">수정</button></p><br>
-		<p id="pw_p" style="margin-left: 130px;">시니어 추가인증 <button type="button" onclick="location.href='/certification'" style=" width: 130px;">인증하러가기</button></p><br>
-		
+		<c:if test="${verificationStatus == null }">
+			<p id="pw_p" style="margin-left: 130px;">시니어 추가인증 <button type="button" onclick="location.href='/certification'" style=" width: 130px;">인증하러가기</button></p><br>
+		</c:if>
 		<div style="background-color: white; border-radius: 10px; margin-bottom: 10px;">
 		<label>전화번호</label><br>
 		<input type="text" class="input_h" name="phoneNumber" value="${seniorDetail.phoneNumber}" style="font-size:1.2rem;" disabled><br>
