@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="certificationDAO">
-    <insert id="saveCertification" parameterType="CertificationDTO">
+    <insert id="saveCertification1" parameterType="CertificationDTO">
         INSERT INTO VERIFICATION 
         VALUES ((select NVL(MAX(VERIFICATION_num), 0) + 1 from VERIFICATION),#{idcpicture}, #{cmnpicture}, #{id},'N')
     </insert>
+    <insert id="saveCertification" parameterType="CertificationDTO">
+        MERGE INTO verification V
+    USING DUAL
+       ON (V.ID = #{id})
+    WHEN MATCHED THEN
+        UPDATE SET V.VERIFICATION_STATUS = 'N'
+    WHEN NOT MATCHED THEN
+        INSERT (V.VERIFICATION_NUM, IDCPICTURE, CMNPICTURE, ID, VERIFICATION_STATUS)
+        VALUES ((select NVL(MAX(VERIFICATION_num), 0) + 1 from VERIFICATION),#{idcpicture}, #{cmnpicture}, #{id},'N')
+    </insert>
+    
 </mapper>
