@@ -10,7 +10,8 @@
     USING DUAL
        ON (V.ID = #{id})
     WHEN MATCHED THEN
-        UPDATE SET V.VERIFICATION_STATUS = 'N'
+        UPDATE SET V.VERIFICATION_STATUS = 'N',
+        V.IDCPICTURE = #{idcpicture}, V.CMNPICTURE = #{cmnpicture}
     WHEN NOT MATCHED THEN
         INSERT (V.VERIFICATION_NUM, IDCPICTURE, CMNPICTURE, ID, VERIFICATION_STATUS)
         VALUES ((select NVL(MAX(VERIFICATION_num), 0) + 1 from VERIFICATION),#{idcpicture}, #{cmnpicture}, #{id},'N')

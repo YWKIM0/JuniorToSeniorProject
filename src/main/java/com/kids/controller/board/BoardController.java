@@ -22,6 +22,9 @@ import com.kids.service.board.BoardService;
 public class BoardController {
 
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	BoardService boardService;
 	
 	//글 작성하는 페이지
@@ -106,6 +109,11 @@ public class BoardController {
 		
 		BoardDto article = boardService.getArticleByArticleNo(articleNo);
 		
+		//접속자와 게시글 작성자가 다르면 수정할 수 없도록 처리
+		String userId = (String)session.getAttribute("userId");
+		if ( !(userId.equals(article.getId())) ) {
+			return "redirect:/boardList";
+		}
 		model.addAttribute("article", article);
 		
 		return "modifyArticle";

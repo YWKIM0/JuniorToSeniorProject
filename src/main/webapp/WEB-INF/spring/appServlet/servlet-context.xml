@@ -39,6 +39,9 @@
 			<exclude-mapping path="/userInfoFormSnr"/>						
 			<exclude-mapping path="/boardList"/>						
 			<exclude-mapping path="/viewArticle"/>						
+			<exclude-mapping path="/IdCheckForm"/>						
+			<exclude-mapping path="/IdCheckAction"/>						
+			<exclude-mapping path="/sendSms"/>						
 			<exclude-mapping path="/resources/**"/>
 			<!--
 			/resources/** 코드 작성으로 인한 불필요 코드 

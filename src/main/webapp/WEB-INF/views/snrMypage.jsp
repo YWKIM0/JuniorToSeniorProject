@@ -25,7 +25,7 @@
 	<form action="" method="post" enctype="multipart/form-data">
 	<div>	
 		<div class="nameTag">
-			<h1>                ${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세   </h1>
+			<h1>${seniorDetail.name}님 만${2023 - fn:substring(seniorDetail.birthday, 0, 4)}세   </h1>
 			<c:choose>
 				<c:when test="${verificationStatus == 'Y'}">
 					<img alt="인증" src="/resources/image/인증.png" style="width: 100px; height: 100px">	
