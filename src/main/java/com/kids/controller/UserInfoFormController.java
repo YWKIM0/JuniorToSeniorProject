@@ -36,7 +36,8 @@ public class UserInfoFormController {
 	MatchingService matchingService;
 
     
-//	----[회원가입 하기 전 회원유형 선택하기]----   
+//	----[회원가입 하기 전 회원유형 선택하기]----
+//		회원가입 유형 선택 페이지를 표시합니다.
     @RequestMapping("/signUpType")
     public String typeBtn_test() {
     	
@@ -44,7 +45,8 @@ public class UserInfoFormController {
     }
     
     
-//	----[부모님 회원가입]----	
+//	----[부모님 회원가입]----
+//부모를 위한 회원가입 폼을 표시하고, 입력한 정보를 데이터베이스에 저장합니다.
 	@GetMapping("/userInfoFormPar")
 	public String userInfoFormPar(Model model) {
 		//부모 폼을 보여줌
@@ -56,7 +58,7 @@ public class UserInfoFormController {
 	// ----[부모님 회원정보 입력 테이블에 저장]----
 	@PostMapping("/userInfoFormPar")
 	public String userInfoFormPar(@ModelAttribute UserInfo_Dto userInfo_dto) {
-
+//		부모 회원 정보를 데이터베이스에 저장합니다.
 		System.out.println(userInfo_dto);
 		// userInfo_dto.setPostCode(userInfo_dto.getPostCode());
 		// 서비스 메서드를 호출하여 userInfo_dto를 전달
@@ -73,6 +75,7 @@ public class UserInfoFormController {
 	}
 
 	// ----[시니어 회원가입]----
+	//- 시니어를 위한 회원가입 폼을 표시하고, 입력한 정보를 데이터베이스에 저장합니다.
 	@GetMapping("/userInfoFormSnr")
 	public String userInfoFormSnr(Model model) {
 		//시니어 폼을 보여줌
@@ -84,7 +87,7 @@ public class UserInfoFormController {
 	// ----[시니어 회원정보 입력 테이블에 저장]----
 	@PostMapping("/userInfoFormSnr")
 	public String userInfoFormSnr(@ModelAttribute UserInfo_Dto userInfo_dto) {
-
+//		시니어 회원 정보를 데이터베이스에 저장합니다.
 		System.out.println(userInfo_dto);
 		userInfo_dto.setPostCode(userInfo_dto.getPostCode());
 		// 서비스 메서드를 호출하여 userInfo_dto를 전달
@@ -116,7 +119,8 @@ public class UserInfoFormController {
 		return "redirect:/logInForm";
 	}
 
-	// ----[아이디 체크하는 창]----
+	// ----[아이디 중복 확인]----아이디 중복 확인 창을 표시합니다.
+	// 사용자가 입력한 아이디가 이미 사용 중인지 확인하고 결과를 반환합니다.
 	@RequestMapping("/IdCheckForm")
 	public String idCheckForm() {
 		return "IdCheckForm";
@@ -126,7 +130,8 @@ public class UserInfoFormController {
 	@RequestMapping("/IdCheckAction")
 	@ResponseBody //return 을 화면이 아니라, 단순 String 텍스트를 리턴 하겠다.
 	public String idCheckAction(@RequestParam("id") String id) {
-
+//		아이디 중복 여부를 확인하고 결과를 반환합니다.
+		
 		//아이디 중복 여부 체크. 기존 아이디 부재시 0
 		int result = userInfoService.idChk(id);
 
@@ -143,7 +148,8 @@ public class UserInfoFormController {
 	//회원가입 중 취소하면 메인페이지로 이동
 //----------------		----------------		----------------		----------------		----------------
 	
-	//로그인 페이지
+	//[ 로그인 페이지 ]
+	//로그인 폼을 표시하고, 입력한 아이디와 비밀번호를 검증하여 성공 또는 실패 페이지로 리다이렉트합니다.
 	@RequestMapping("/logInForm")
 	public String logInForm() {
 
@@ -168,6 +174,8 @@ public class UserInfoFormController {
 
 	@RequestMapping("/login")
 	public String logInCheck(UserInfo_Dto userInfo_dtoFromForm, HttpServletRequest request ) {
+//		로그인 정보를 검증하고 성공 또는 실패 페이지로 리다이렉트합니다.
+		
 	    UserInfo_Dto userInfo_dto = userInfoService.logInCheck(userInfo_dtoFromForm);
 	    
 	    if(userInfo_dto == null) {

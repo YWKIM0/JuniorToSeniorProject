@@ -1,34 +1,17 @@
 package com.kids.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.kids.dto.SmsRequestDto;
 import com.kids.dto.SmsResponseDto;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.NurigoApp;
-import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;
-import net.nurigo.sdk.message.model.Balance;
-import net.nurigo.sdk.message.model.StorageType;
-import net.nurigo.sdk.message.request.MessageListRequest;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
-import net.nurigo.sdk.message.response.MessageListResponse;
-import net.nurigo.sdk.message.response.MultipleDetailMessageSentResponse;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 //import net.nurigo.sdk.message.model.Message;
@@ -51,36 +34,6 @@ public class SmsConfirmController {
 		return "sms_cf";
 	}
 	
-	//a href 링크 
-	//js ajax
-//	@PostMapping("/sendSms")
-//	@ResponseBody
-//	public ResponseEntity<Map<String, String>> sendSms(@RequestParam("to") String phoneNumber, HttpServletRequest request) {		
-//		// 인증 번호 난수 생성
-//	    int authNumber = (int)Math.floor(Math.random() * 100000) + 10000;
-//		
-//		//sms 처리
-//	    net.nurigo.sdk.message.model.Message message = new net.nurigo.sdk.message.model.Message();
-//
-//        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
-//	    message.setFrom("01054111512"); //발신번호 입력
-//	    message.setTo(phoneNumber);      //수신번호 입력
-//	    message.setText("인증번호: " + authNumber); // 인증번호 포함된 메시지 텍스트 설정
-////	    message.setType("net.nurigo.sdk.message.model.Message.MessageType.SMS");
-//
-//
-//        SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
-//        System.out.println(response);
-//
-//        HttpSession session = request.getSession();
-//        session.setAttribute("authNumber", String.valueOf(authNumber));
-//        session.setMaxInactiveInterval(2 * 60); // 세션 유효 시간을 2분으로 설정
-//        
-//        // 생성된 인증 번호를 JSON 객체로 변환하여 클라이언트에게 반환합니다.
-//        Map<String, String> responseBody = new HashMap<>();
-//        responseBody.put("authNumber", String.valueOf(authNumber));
-//        return ResponseEntity.ok(responseBody);
-//	}
 	
 	/**
      * 단일 메시지 발송 예제
@@ -126,4 +79,34 @@ public class SmsConfirmController {
     }
 
 }
+//a href 링크 
+//js ajax
+//	@PostMapping("/sendSms")
+//	@ResponseBody
+//	public ResponseEntity<Map<String, String>> sendSms(@RequestParam("to") String phoneNumber, HttpServletRequest request) {		
+//		// 인증 번호 난수 생성
+//	    int authNumber = (int)Math.floor(Math.random() * 100000) + 10000;
+//		
+//		//sms 처리
+//	    net.nurigo.sdk.message.model.Message message = new net.nurigo.sdk.message.model.Message();
+//
+//        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
+//	    message.setFrom("01054111512"); //발신번호 입력
+//	    message.setTo(phoneNumber);      //수신번호 입력
+//	    message.setText("인증번호: " + authNumber); // 인증번호 포함된 메시지 텍스트 설정
+////	    message.setType("net.nurigo.sdk.message.model.Message.MessageType.SMS");
+//
+//
+//        SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
+//        System.out.println(response);
+//
+//        HttpSession session = request.getSession();
+//        session.setAttribute("authNumber", String.valueOf(authNumber));
+//        session.setMaxInactiveInterval(2 * 60); // 세션 유효 시간을 2분으로 설정
+//        
+//        // 생성된 인증 번호를 JSON 객체로 변환하여 클라이언트에게 반환합니다.
+//        Map<String, String> responseBody = new HashMap<>();
+//        responseBody.put("authNumber", String.valueOf(authNumber));
+//        return ResponseEntity.ok(responseBody);
+//	}
 

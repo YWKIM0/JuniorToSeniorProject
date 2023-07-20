@@ -1,8 +1,8 @@
-package com.kids.api;
-
-import lombok.Data;
-
-@Data
-public class SMS_confirm_body {
-
-}
+//package com.kids.api;
+//
+//import lombok.Data;
+//
+//@Data
+//public class SMS_confirm_body {
+//
+//}

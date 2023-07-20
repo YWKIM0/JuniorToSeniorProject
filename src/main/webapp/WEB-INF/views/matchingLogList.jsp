@@ -148,7 +148,6 @@ response.sendRedirect("main");
 				<th>부모 아이디</th>
 				<th>시작일자</th>
 				<th>종료일자</th>
-				<th>스케줄</th>
 				<th>픽업장소</th>
 				<th>도착장소</th>
 				<th>매칭상태</th>
@@ -163,18 +162,6 @@ response.sendRedirect("main");
 					<td><a id="parIdBtn" href="matchingLogList?parId=${mList.parId}">${mList.parId}</a></td>
 					<td><c:out value="${fn:substring(mList.startDate, 0, 10)}"/></td>
 					<td><c:out value="${fn:substring(mList.endDate, 0, 10)}"/></td>
-					<td><c:choose>
-							<c:when test="${mList.scheduleCode eq '1A'}">월요일 오전</c:when>
-							<c:when test="${mList.scheduleCode eq '1B'}">월요일 오후</c:when>
-							<c:when test="${mList.scheduleCode eq '2A'}">화요일 오전</c:when>
-							<c:when test="${mList.scheduleCode eq '2B'}">화요일 오후</c:when>
-							<c:when test="${mList.scheduleCode eq '3A'}">수요일 오전</c:when>
-							<c:when test="${mList.scheduleCode eq '3B'}">수요일 오후</c:when>
-							<c:when test="${mList.scheduleCode eq '4A'}">목요일 오전</c:when>
-							<c:when test="${mList.scheduleCode eq '4B'}">목요일 오후</c:when>
-							<c:when test="${mList.scheduleCode eq '5A'}">금요일 오전</c:when>
-							<c:when test="${mList.scheduleCode eq '5B'}">금요일 오후</c:when>
-						</c:choose></td>
 					<td>${mList.pickUpPlace}</td>
 					<td>${mList.arrivePlace}</td>
 					<td>${mList.status}</td>
